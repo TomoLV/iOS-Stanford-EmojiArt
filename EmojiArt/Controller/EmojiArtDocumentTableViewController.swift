@@ -10,6 +10,12 @@ import UIKit
 
 class EmojiArtDocumentTableViewController: UITableViewController {
     
+    // MARK: - Actions
+    @IBAction func newEmojiArt(_ sender: UIBarButtonItem) {
+        emojiArtDocuments += ["Untitled".madeUnique(withRespectTo: emojiArtDocuments)]
+        tableView.reloadData()
+    }
+    
     // MARK: - Instance properties
     var emojiArtDocuments = ["One", "Two", "Three"]
 
