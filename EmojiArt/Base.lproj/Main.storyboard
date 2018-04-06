@@ -67,14 +67,20 @@
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G9K-Bp-GY7">
                                         <rect key="frame" x="0.0" y="0.0" width="703.5" height="748"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" priority="250" constant="748" id="FWd-iM-F9p"/>
+                                            <constraint firstAttribute="width" priority="250" constant="703.5" id="g5J-WQ-cbt"/>
+                                        </constraints>
                                     </scrollView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="G9K-Bp-GY7" secondAttribute="bottom" id="1UB-xL-v7B"/>
-                                    <constraint firstItem="G9K-Bp-GY7" firstAttribute="top" secondItem="CTJ-aJ-CvJ" secondAttribute="top" id="HP8-ZJ-E5f"/>
-                                    <constraint firstItem="G9K-Bp-GY7" firstAttribute="leading" secondItem="CTJ-aJ-CvJ" secondAttribute="leading" id="URc-V8-5zv"/>
-                                    <constraint firstAttribute="trailing" secondItem="G9K-Bp-GY7" secondAttribute="trailing" id="oGH-bB-oMw"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="G9K-Bp-GY7" secondAttribute="bottom" id="1UB-xL-v7B"/>
+                                    <constraint firstItem="G9K-Bp-GY7" firstAttribute="centerY" secondItem="CTJ-aJ-CvJ" secondAttribute="centerY" id="39R-nl-mrZ"/>
+                                    <constraint firstItem="G9K-Bp-GY7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CTJ-aJ-CvJ" secondAttribute="top" id="HP8-ZJ-E5f"/>
+                                    <constraint firstItem="G9K-Bp-GY7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CTJ-aJ-CvJ" secondAttribute="leading" id="URc-V8-5zv"/>
+                                    <constraint firstItem="G9K-Bp-GY7" firstAttribute="centerX" secondItem="CTJ-aJ-CvJ" secondAttribute="centerX" id="Wih-aN-xHk"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G9K-Bp-GY7" secondAttribute="trailing" id="oGH-bB-oMw"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -90,6 +96,8 @@
                     <connections>
                         <outlet property="dropZone" destination="CTJ-aJ-CvJ" id="tPU-mM-M57"/>
                         <outlet property="scrollView" destination="G9K-Bp-GY7" id="KFm-HF-vF3"/>
+                        <outlet property="scrollViewHeight" destination="FWd-iM-F9p" id="M4x-94-WW4"/>
+                        <outlet property="scrollViewWidth" destination="g5J-WQ-cbt" id="dI7-uZ-MSb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
