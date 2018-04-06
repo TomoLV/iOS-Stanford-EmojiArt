@@ -11,15 +11,38 @@ import UIKit
 class EmojiArtViewController: UIViewController {
     
     // MARK: - Outlets
-    @IBOutlet weak var emojiArtView: EmojiArtView!
     @IBOutlet weak var dropZone: UIView! {
         didSet {
             dropZone.addInteraction(UIDropInteraction(delegate: self))
         }
     }
+    @IBOutlet weak var scrollView: UIScrollView! {
+        didSet {
+            scrollView.minimumZoomScale = 0.1
+            scrollView.maximumZoomScale = 5.0
+            scrollView.delegate = self
+            scrollView.addSubview(emojiArtView)
+        }
+    }
     
     // MARK: - Instance properties
     var imageFetcher: ImageFetcher!
+    var emojiArtView = EmojiArtView()
+    var emojiArtBackgroundImage: UIImage? {
+        get {
+            return emojiArtView.backgroundImage
+        }
+        set {
+            scrollView?.zoomScale = 1.0
+            emojiArtView.backgroundImage = newValue
+            let size = newValue?.size ?? CGSize.zero
+            emojiArtView.frame = CGRect(origin: CGPoint.zero, size: size)
+            scrollView.contentSize = size
+            if let dropZone = self.dropZone, size.width > 0, size.height > 0 {
+                scrollView.zoomScale = max(dropZone.bounds.size.width / size.width, dropZone.bounds.size.height / size.height)
+            }
+        }
+    }
     
     // MARK: - View Controller's Lifecycle
     override func viewDidLoad() {
@@ -47,7 +70,7 @@ extension EmojiArtViewController: UIDropInteractionDelegate {
         // Initialize ImageFetcher
         imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async {
-                self.emojiArtView.backgroundImage = image
+                self.emojiArtBackgroundImage = image
             }
         }
         
@@ -61,5 +84,13 @@ extension EmojiArtViewController: UIDropInteractionDelegate {
                 self.imageFetcher.backup = image
             }
         }
+    }
+}
+
+// MARK: - UIScrollViewDelegate implementation
+extension EmojiArtViewController: UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return emojiArtView
     }
 }
