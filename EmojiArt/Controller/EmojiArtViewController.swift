@@ -10,6 +10,7 @@ import UIKit
 
 class EmojiArtViewController: UIViewController {
 
+    // MARK: - View Controller's Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
