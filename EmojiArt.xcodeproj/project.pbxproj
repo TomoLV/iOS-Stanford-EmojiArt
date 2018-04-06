@@ -13,6 +13,7 @@
 		2B0350652077650C000CB870 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B0350632077650C000CB870 /* LaunchScreen.storyboard */; };
 		2B03506E20776605000CB870 /* EmojiArtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03506D20776605000CB870 /* EmojiArtViewController.swift */; };
 		2B03507120776671000CB870 /* EmojiArtView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03507020776671000CB870 /* EmojiArtView.swift */; };
+		2B03507520776E23000CB870 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03507420776E23000CB870 /* Utilities.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		2B0350662077650C000CB870 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B03506D20776605000CB870 /* EmojiArtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtViewController.swift; sourceTree = "<group>"; };
 		2B03507020776671000CB870 /* EmojiArtView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtView.swift; sourceTree = "<group>"; };
+		2B03507420776E23000CB870 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		2B0350592077650A000CB870 /* EmojiArt */ = {
 			isa = PBXGroup;
 			children = (
+				2B03507320776A3F000CB870 /* Util */,
 				2B03507220776678000CB870 /* View */,
 				2B03506F2077660B000CB870 /* Controller */,
 				2B03505E2077650A000CB870 /* Main.storyboard */,
@@ -89,6 +92,14 @@
 				2B03507020776671000CB870 /* EmojiArtView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2B03507320776A3F000CB870 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				2B03507420776E23000CB870 /* Utilities.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +175,7 @@
 			files = (
 				2B03505B2077650A000CB870 /* AppDelegate.swift in Sources */,
 				2B03506E20776605000CB870 /* EmojiArtViewController.swift in Sources */,
+				2B03507520776E23000CB870 /* Utilities.swift in Sources */,
 				2B03507120776671000CB870 /* EmojiArtView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
