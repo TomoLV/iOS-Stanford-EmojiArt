@@ -18,6 +18,16 @@ class EmojiArtDocumentTableViewController: UITableViewController {
     
     // MARK: - Instance properties
     var emojiArtDocuments = ["One", "Two", "Three"]
+    
+    // MARK: - View Controller's Lifecycle
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        // Make sure that master view is not visible on screen when in multitasking mode on iPad
+        // TODO: - Check if it's really necessary in this version of Swift / iOS (it was done this way in the course)
+        if splitViewController?.preferredDisplayMode != .primaryOverlay {
+            splitViewController?.preferredDisplayMode = .primaryOverlay
+        }
+    }
 
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
