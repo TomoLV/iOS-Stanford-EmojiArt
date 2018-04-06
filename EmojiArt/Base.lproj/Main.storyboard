@@ -17,12 +17,25 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CTJ-aJ-CvJ">
+                                <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="CTJ-aJ-CvJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4gV-I4-DE4"/>
+                            <constraint firstItem="CTJ-aJ-CvJ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="WcD-CW-Zgu"/>
+                            <constraint firstItem="CTJ-aJ-CvJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ugA-Qj-K6F"/>
+                            <constraint firstItem="CTJ-aJ-CvJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="x6s-4t-FkS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="25.78125" y="33.59375"/>
         </scene>
     </scenes>
 </document>
