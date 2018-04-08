@@ -16,6 +16,7 @@
 		2B03507520776E23000CB870 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03507420776E23000CB870 /* Utilities.swift */; };
 		2B03507720778566000CB870 /* EmojiArtDocumentTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B03507620778566000CB870 /* EmojiArtDocumentTableViewController.swift */; };
 		2B7198A3207A47450066D437 /* EmojiCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7198A2207A47450066D437 /* EmojiCollectionViewCell.swift */; };
+		2B7198A5207AC16D0066D437 /* EmojiArtView+Gestures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B7198A4207AC16D0066D437 /* EmojiArtView+Gestures.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		2B03507420776E23000CB870 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		2B03507620778566000CB870 /* EmojiArtDocumentTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiArtDocumentTableViewController.swift; sourceTree = "<group>"; };
 		2B7198A2207A47450066D437 /* EmojiCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiCollectionViewCell.swift; sourceTree = "<group>"; };
+		2B7198A4207AC16D0066D437 /* EmojiArtView+Gestures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "EmojiArtView+Gestures.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		2B03507320776A3F000CB870 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				2B7198A4207AC16D0066D437 /* EmojiArtView+Gestures.swift */,
 				2B03507420776E23000CB870 /* Utilities.swift */,
 			);
 			path = Util;
@@ -180,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B03505B2077650A000CB870 /* AppDelegate.swift in Sources */,
+				2B7198A5207AC16D0066D437 /* EmojiArtView+Gestures.swift in Sources */,
 				2B7198A3207A47450066D437 /* EmojiCollectionViewCell.swift in Sources */,
 				2B03506E20776605000CB870 /* EmojiArtViewController.swift in Sources */,
 				2B03507520776E23000CB870 /* Utilities.swift in Sources */,
