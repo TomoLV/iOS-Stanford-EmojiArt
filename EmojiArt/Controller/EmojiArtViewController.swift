@@ -29,6 +29,7 @@ class EmojiArtViewController: UIViewController {
             emojiCollectionView.dataSource = self
             emojiCollectionView.delegate = self
             emojiCollectionView.dragDelegate = self
+            emojiCollectionView.dropDelegate = self
         }
     }
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
@@ -149,6 +150,8 @@ extension EmojiArtViewController: UICollectionViewDelegateFlowLayout {
 extension EmojiArtViewController: UICollectionViewDragDelegate {
     
     func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        // set localContext to collectionView, for usage with drop later
+        session.localContext = collectionView
         return dragItems(at: indexPath)
     }
     
@@ -159,11 +162,28 @@ extension EmojiArtViewController: UICollectionViewDragDelegate {
     private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
         if let attributedString = (emojiCollectionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.label.attributedText {
             let dragItem = UIDragItem(itemProvider: NSItemProvider(object: attributedString))
-            // Since we are only dragging emojis within our app, we can use this "shortcut" method with localObject
+            // Since we are only dragging emojis, we can use this "shortcut" method with localObject, drop requires more
             dragItem.localObject = attributedString
             return [dragItem]
         } else {
             return []
         }
+    }
+}
+
+// MARK: - UICollectionViewDropDelegate implementation
+extension EmojiArtViewController: UICollectionViewDropDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, canHandle session: UIDropSession) -> Bool {
+        return session.canLoadObjects(ofClass: NSAttributedString.self)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
+        let isSelf = (session.localDragSession?.localContext as? UICollectionView) == collectionView
+        return UICollectionViewDropProposal(operation: isSelf ? .move : .copy, intent: .insertAtDestinationIndexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
+        
     }
 }
