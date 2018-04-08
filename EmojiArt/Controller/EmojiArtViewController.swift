@@ -186,6 +186,7 @@ extension EmojiArtViewController: UICollectionViewDropDelegate {
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {
         let destinationIndexPath = coordinator.destinationIndexPath ?? IndexPath(item: 0, section: 0)
         for item in coordinator.items {
+            // 1. Local case - drop comes from collectionView (other item already present in collectionView)
             if let sourceIndexPath = item.sourceIndexPath {
                 if let attributedString = item.dragItem.localObject as? NSAttributedString {
                     // Use performBatchUpdates to stay in sync with the model
@@ -197,6 +198,21 @@ extension EmojiArtViewController: UICollectionViewDropDelegate {
                         collectionView.insertItems(at: [destinationIndexPath])
                     })
                     coordinator.drop(item.dragItem, toItemAt: destinationIndexPath)
+                }
+            // 2. Outside case - drop comes from the outside
+            } else {
+                // Need to consider that when you drop something from outside your app, there is a time needed for that dropItem to be fetched, for example from the network request - collectionView places the placeholder, we should create placeholder in the storyboard with proper Reuse Identifier
+                let placeholderContext = coordinator.drop(item.dragItem, to: UICollectionViewDropPlaceholder(insertionIndexPath: destinationIndexPath, reuseIdentifier: "DropPlaceholderCell"))
+                item.dragItem.itemProvider.loadObject(ofClass: NSAttributedString.self) { (provider, error) in
+                    DispatchQueue.main.async {
+                        if let attributedString = provider as? NSAttributedString {
+                            placeholderContext.commitInsertion(dataSourceUpdates: { insertionIndexPath in
+                                self.emojis.insert(attributedString.string, at: insertionIndexPath.item)
+                            })
+                        } else {
+                            placeholderContext.deletePlaceholder()
+                        }
+                    }
                 }
             }
         }
