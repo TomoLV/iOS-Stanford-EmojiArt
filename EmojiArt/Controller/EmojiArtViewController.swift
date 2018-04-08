@@ -24,6 +24,12 @@ class EmojiArtViewController: UIViewController {
             scrollView.addSubview(emojiArtView)
         }
     }
+    @IBOutlet weak var emojiCollectionView: UICollectionView! {
+        didSet {
+            emojiCollectionView.dataSource = self
+            emojiCollectionView.delegate = self
+        }
+    }
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
     
@@ -47,6 +53,7 @@ class EmojiArtViewController: UIViewController {
             }
         }
     }
+    var emojis = "😀🎁✈️🎱🍎🐶🐝☕️🎼🚲♣️👨‍🎓✏️🌈🤡🎓👻☎️".map { String($0) }
     
     // MARK: - View Controller's Lifecycle
     override func viewDidLoad() {
@@ -103,4 +110,28 @@ extension EmojiArtViewController: UIScrollViewDelegate {
         scrollViewHeight.constant = scrollView.contentSize.height
         scrollViewWidth.constant = scrollView.contentSize.width
     }
+}
+
+// MARK: - UICollectionViewDataSource implementation
+extension EmojiArtViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return emojis.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath)
+        
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegate implementation
+extension EmojiArtViewController: UICollectionViewDelegate {
+    
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout implementation
+extension EmojiArtViewController: UICollectionViewDelegateFlowLayout {
+    
 }

@@ -133,6 +133,7 @@
                     </view>
                     <connections>
                         <outlet property="dropZone" destination="CTJ-aJ-CvJ" id="tPU-mM-M57"/>
+                        <outlet property="emojiCollectionView" destination="HTv-RA-bKq" id="mbV-hc-Sfj"/>
                         <outlet property="scrollView" destination="G9K-Bp-GY7" id="KFm-HF-vF3"/>
                         <outlet property="scrollViewHeight" destination="FWd-iM-F9p" id="M4x-94-WW4"/>
                         <outlet property="scrollViewWidth" destination="g5J-WQ-cbt" id="dI7-uZ-MSb"/>
