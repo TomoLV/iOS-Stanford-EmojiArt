@@ -115,12 +115,20 @@ extension EmojiArtViewController: UIScrollViewDelegate {
 // MARK: - UICollectionViewDataSource implementation
 extension EmojiArtViewController: UICollectionViewDataSource {
     
+    private var font: UIFont {
+        return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(64.0))
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return emojis.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath)
+        if let emojiCell = cell as? EmojiCollectionViewCell {
+            let text = NSAttributedString(string: emojis[indexPath.item], attributes: [.font:font])
+            emojiCell.label.attributedText = text
+        }
         
         return cell
     }
