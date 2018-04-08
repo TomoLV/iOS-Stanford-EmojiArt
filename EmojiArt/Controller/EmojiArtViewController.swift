@@ -28,6 +28,7 @@ class EmojiArtViewController: UIViewController {
         didSet {
             emojiCollectionView.dataSource = self
             emojiCollectionView.delegate = self
+            emojiCollectionView.dragDelegate = self
         }
     }
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
@@ -142,4 +143,27 @@ extension EmojiArtViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDelegateFlowLayout implementation
 extension EmojiArtViewController: UICollectionViewDelegateFlowLayout {
     
+}
+
+// MARK: - UICollectionViewDragDelegate implementation
+extension EmojiArtViewController: UICollectionViewDragDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        return dragItems(at: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, itemsForAddingTo session: UIDragSession, at indexPath: IndexPath, point: CGPoint) -> [UIDragItem] {
+        return dragItems(at: indexPath)
+    }
+    
+    private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
+        if let attributedString = (emojiCollectionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.label.attributedText {
+            let dragItem = UIDragItem(itemProvider: NSItemProvider(object: attributedString))
+            // Since we are only dragging emojis within our app, we can use this "shortcut" method with localObject
+            dragItem.localObject = attributedString
+            return [dragItem]
+        } else {
+            return []
+        }
+    }
 }
