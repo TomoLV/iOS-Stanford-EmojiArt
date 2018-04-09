@@ -20,6 +20,10 @@ struct EmojiArt: Codable {
         let size: Int
     }
     
+    var json: Data? {
+        return try? JSONEncoder().encode(self)
+    }
+    
     init(url: URL, emojis: [EmojiInfo]) {
         self.url = url
         self.emojis = emojis
