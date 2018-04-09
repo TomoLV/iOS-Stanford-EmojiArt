@@ -136,6 +136,49 @@
                                             <constraint firstItem="K63-ST-TjE" firstAttribute="centerX" secondItem="vhT-D4-ooL" secondAttribute="centerX" id="LEo-Hj-YPI"/>
                                         </constraints>
                                     </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AddEmojiButtonCell" id="a7m-T1-HPr">
+                                        <rect key="frame" x="180" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k7T-bv-AGi">
+                                                    <rect key="frame" x="20.5" y="-4.5" width="39" height="89"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="64"/>
+                                                    <state key="normal" title="+"/>
+                                                </button>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="k7T-bv-AGi" firstAttribute="centerX" secondItem="a7m-T1-HPr" secondAttribute="centerX" id="06P-GC-3SZ"/>
+                                            <constraint firstItem="k7T-bv-AGi" firstAttribute="centerY" secondItem="a7m-T1-HPr" secondAttribute="centerY" id="sCU-CG-K3h"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmojiInputCell" id="z2G-j9-6ll" customClass="TextFieldCollectionViewCell">
+                                        <rect key="frame" x="270" y="0.0" width="80" height="80"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="66e-wW-hMV">
+                                                    <rect key="frame" x="8" y="12.5" width="64" height="55"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="42"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="66e-wW-hMV" secondAttribute="trailing" constant="8" id="DQ5-c8-DgY"/>
+                                            <constraint firstItem="66e-wW-hMV" firstAttribute="centerY" secondItem="z2G-j9-6ll" secondAttribute="centerY" id="Ofb-7B-1P3"/>
+                                            <constraint firstItem="66e-wW-hMV" firstAttribute="leading" secondItem="z2G-j9-6ll" secondAttribute="leading" constant="8" id="ZaY-Xx-kIR"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="textField" destination="66e-wW-hMV" id="zE6-kz-38B"/>
+                                        </connections>
+                                    </collectionViewCell>
                                 </cells>
                             </collectionView>
                         </subviews>

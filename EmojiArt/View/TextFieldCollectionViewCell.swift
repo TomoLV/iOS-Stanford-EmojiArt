@@ -1,0 +1,25 @@
+//
+//  TextFieldCollectionViewCell.swift
+//  EmojiArt
+//
+//  Created by Tomasz Bogusz on 09.04.2018.
+//  Copyright © 2018 Tomasz Bogusz. All rights reserved.
+//
+
+import UIKit
+
+class TextFieldCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - Outlets
+    @IBOutlet weak var textField: UITextField! {
+        didSet {
+            textField.delegate = self
+        }
+    }
+    
+}
+
+// MARK: - UITextFieldDelegate implementation
+extension TextFieldCollectionViewCell: UITextFieldDelegate {
+    
+}
