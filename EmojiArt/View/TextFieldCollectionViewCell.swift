@@ -17,6 +17,9 @@ class TextFieldCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // Instance properties
+    var resignationHandler: (() -> Void)?
+    
 }
 
 // MARK: - UITextFieldDelegate implementation
@@ -25,5 +28,9 @@ extension TextFieldCollectionViewCell: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        resignationHandler?()
     }
 }
