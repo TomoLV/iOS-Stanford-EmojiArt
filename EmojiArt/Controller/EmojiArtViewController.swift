@@ -35,6 +35,12 @@ class EmojiArtViewController: UIViewController {
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
     @IBOutlet weak var scrollViewWidth: NSLayoutConstraint!
     
+    // MARK: - Actions
+    @IBAction func addEmoji() {
+        addingEmoji = true
+        emojiCollectionView.reloadSections(IndexSet(integer: 0))
+    }
+    
     // MARK: - Instance properties
     var imageFetcher: ImageFetcher!
     var emojiArtView = EmojiArtView()
@@ -56,6 +62,7 @@ class EmojiArtViewController: UIViewController {
         }
     }
     var emojis = "😀🎁✈️🎱🍎🐶🐝☕️🎼🚲♣️👨‍🎓✏️🌈🤡🎓👻☎️".map { String($0) }
+    private var addingEmoji: Bool = false
     
     // MARK: - View Controller's Lifecycle
     override func viewDidLoad() {
@@ -121,18 +128,36 @@ extension EmojiArtViewController: UICollectionViewDataSource {
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: UIFont.preferredFont(forTextStyle: .body).withSize(64.0))
     }
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return emojis.count
+        switch section {
+        case 0:
+            return 1
+        case 1:
+            return emojis.count
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath)
-        if let emojiCell = cell as? EmojiCollectionViewCell {
-            let text = NSAttributedString(string: emojis[indexPath.item], attributes: [.font:font])
-            emojiCell.label.attributedText = text
+        if indexPath.section == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiCell", for: indexPath)
+            if let emojiCell = cell as? EmojiCollectionViewCell {
+                let text = NSAttributedString(string: emojis[indexPath.item], attributes: [.font:font])
+                emojiCell.label.attributedText = text
+            }
+            return cell
+        } else if addingEmoji {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EmojiInputCell", for: indexPath)
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddEmojiButtonCell", for: indexPath)
+            return cell
         }
-        
-        return cell
     }
 }
 

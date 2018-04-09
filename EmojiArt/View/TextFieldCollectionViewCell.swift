@@ -22,4 +22,8 @@ class TextFieldCollectionViewCell: UICollectionViewCell {
 // MARK: - UITextFieldDelegate implementation
 extension TextFieldCollectionViewCell: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
