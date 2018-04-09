@@ -10,6 +10,9 @@ import UIKit
 
 class EmojiArtViewController: UIViewController {
     
+    // MARK: - Model
+    var emojiArt: EmojiArt?
+    
     // MARK: - Outlets
     @IBOutlet weak var dropZone: UIView! {
         didSet {
