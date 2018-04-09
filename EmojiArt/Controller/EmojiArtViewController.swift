@@ -164,10 +164,24 @@ extension EmojiArtViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate implementation
 extension EmojiArtViewController: UICollectionViewDelegate {
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if let inputCell = cell as? TextFieldCollectionViewCell {
+            inputCell.textField.becomeFirstResponder()
+        }
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout implementation
 extension EmojiArtViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if addingEmoji && indexPath.section == 0 {
+            return CGSize(width: 300, height: 80)
+        } else {
+            return CGSize(width: 80, height: 80)
+        }
+    }
     
 }
 
@@ -185,7 +199,8 @@ extension EmojiArtViewController: UICollectionViewDragDelegate {
     }
     
     private func dragItems(at indexPath: IndexPath) -> [UIDragItem] {
-        if let attributedString = (emojiCollectionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.label.attributedText {
+        // Disable dragging when addingEmoji
+        if !addingEmoji, let attributedString = (emojiCollectionView.cellForItem(at: indexPath) as? EmojiCollectionViewCell)?.label.attributedText {
             let dragItem = UIDragItem(itemProvider: NSItemProvider(object: attributedString))
             // Since we are only dragging emojis, we can use this "shortcut" method with localObject, drop requires more
             dragItem.localObject = attributedString
@@ -204,8 +219,13 @@ extension EmojiArtViewController: UICollectionViewDropDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
-        let isSelf = (session.localDragSession?.localContext as? UICollectionView) == collectionView
-        return UICollectionViewDropProposal(operation: isSelf ? .move : .copy, intent: .insertAtDestinationIndexPath)
+        // Only allow repositioning and drop in section 1
+        if let indexPath = destinationIndexPath, indexPath.section == 1 {
+            let isSelf = (session.localDragSession?.localContext as? UICollectionView) == collectionView
+            return UICollectionViewDropProposal(operation: isSelf ? .move : .copy, intent: .insertAtDestinationIndexPath)
+        } else {
+            return UICollectionViewDropProposal(operation: .cancel)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, performDropWith coordinator: UICollectionViewDropCoordinator) {

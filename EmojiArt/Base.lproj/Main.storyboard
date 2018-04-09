@@ -158,7 +158,7 @@
                                             <constraint firstItem="k7T-bv-AGi" firstAttribute="centerY" secondItem="a7m-T1-HPr" secondAttribute="centerY" id="sCU-CG-K3h"/>
                                         </constraints>
                                     </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmojiInputCell" id="z2G-j9-6ll" customClass="TextFieldCollectionViewCell">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EmojiInputCell" id="z2G-j9-6ll" customClass="TextFieldCollectionViewCell" customModule="EmojiArt" customModuleProvider="target">
                                         <rect key="frame" x="270" y="0.0" width="80" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
