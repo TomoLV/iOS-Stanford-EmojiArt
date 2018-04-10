@@ -76,6 +76,7 @@
 		2B0350592077650A000CB870 /* EmojiArt */ = {
 			isa = PBXGroup;
 			children = (
+				2B3AECBB207CAC8D00C3E7F7 /* Old */,
 				2B03507320776A3F000CB870 /* Util */,
 				2B00A614207BF4DA000C724A /* Model */,
 				2B03507220776678000CB870 /* View */,
@@ -101,7 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				2B03506D20776605000CB870 /* EmojiArtViewController.swift */,
-				2B03507620778566000CB870 /* EmojiArtDocumentTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -123,6 +123,14 @@
 				2B03507420776E23000CB870 /* Utilities.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		2B3AECBB207CAC8D00C3E7F7 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				2B03507620778566000CB870 /* EmojiArtDocumentTableViewController.swift */,
+			);
+			path = Old;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -68,6 +68,13 @@ class EmojiArtViewController: UIViewController {
         addingEmoji = true
         emojiCollectionView.reloadSections(IndexSet(integer: 0))
     }
+    @IBAction func save(_ sender: UIBarButtonItem) {
+        if let json = emojiArt?.json {
+            if let jsonString = String(data: json, encoding: .utf8) {
+                print(jsonString)
+            }
+        }
+    }
     
     // MARK: - Instance properties
     var imageFetcher: ImageFetcher!
