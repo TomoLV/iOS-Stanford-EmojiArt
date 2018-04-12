@@ -69,11 +69,15 @@ class EmojiArtViewController: UIViewController {
         addingEmoji = true
         emojiCollectionView.reloadSections(IndexSet(integer: 0))
     }
-    @IBAction func save(_ sender: UIBarButtonItem) {
+    @IBAction func save(_ sender: UIBarButtonItem? = nil) {
         document?.emojiArt = emojiArt
         if document?.emojiArt != nil {
             document?.updateChangeCount(.done)
         }
+    }
+    @IBAction func close(_ sender: UIBarButtonItem) {
+        save()
+        document?.close()
     }
     
     // MARK: - Instance properties
