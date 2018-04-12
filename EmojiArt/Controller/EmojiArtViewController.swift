@@ -107,13 +107,6 @@ class EmojiArtViewController: UIViewController {
     private var addingEmoji: Bool = false
     
     // MARK: - View Controller's Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("Untitled.json") {
-            document = EmojiArtDocument(fileURL: url)
-        }
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         document?.open { success in
