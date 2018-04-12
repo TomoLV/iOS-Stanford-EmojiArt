@@ -70,8 +70,14 @@ class EmojiArtViewController: UIViewController {
     }
     @IBAction func save(_ sender: UIBarButtonItem) {
         if let json = emojiArt?.json {
-            if let jsonString = String(data: json, encoding: .utf8) {
-                print(jsonString)
+            // Get url to save file in the local filesystem (our app's sandbox
+            if let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("Untitled.json") {
+                do {
+                    try json.write(to: url)
+                    print("Saved successfully")
+                } catch let error {
+                    print("Couldn't save \(error)")
+                }
             }
         }
     }
