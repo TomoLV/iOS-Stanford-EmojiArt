@@ -11,6 +11,7 @@ import UIKit
 class EmojiArtViewController: UIViewController {
     
     // MARK: - Model
+    var document: EmojiArtDocument?
     var emojiArt: EmojiArt? {
         get {
             if let url = emojiArtBackgroundImage.url {
@@ -69,16 +70,9 @@ class EmojiArtViewController: UIViewController {
         emojiCollectionView.reloadSections(IndexSet(integer: 0))
     }
     @IBAction func save(_ sender: UIBarButtonItem) {
-        if let json = emojiArt?.json {
-            // Get url to save file in the local filesystem (our app's sandbox
-            if let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("Untitled.json") {
-                do {
-                    try json.write(to: url)
-                    print("Saved successfully")
-                } catch let error {
-                    print("Couldn't save \(error)")
-                }
-            }
+        document?.emojiArt = emojiArt
+        if document?.emojiArt != nil {
+            document?.updateChangeCount(.done)
         }
     }
     
@@ -116,11 +110,10 @@ class EmojiArtViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        // Load some saved image on start
-        if let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("Untitled.json") {
-            if let jsonData = try? Data(contentsOf: url) {
-                emojiArt = EmojiArt(json: jsonData)
+        document?.open { success in
+            if success {
+                self.title = self.document?.localizedName
+                self.emojiArt = self.document?.emojiArt
             }
         }
     }
