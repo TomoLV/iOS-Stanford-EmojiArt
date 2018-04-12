@@ -59,6 +59,8 @@ class EmojiArtViewController: UIViewController {
             emojiCollectionView.delegate = self
             emojiCollectionView.dragDelegate = self
             emojiCollectionView.dropDelegate = self
+            // Set to true to allow drag on iPhone (disabled by default)
+            emojiCollectionView.dragInteractionEnabled = true
         }
     }
     @IBOutlet weak var scrollViewHeight: NSLayoutConstraint!
