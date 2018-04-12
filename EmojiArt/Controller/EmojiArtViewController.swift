@@ -77,7 +77,9 @@ class EmojiArtViewController: UIViewController {
     }
     @IBAction func close(_ sender: UIBarButtonItem) {
         save()
-        document?.close()
+        dismiss(animated: true) {
+            self.document?.close()
+        }
     }
     
     // MARK: - Instance properties
