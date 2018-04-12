@@ -316,7 +316,8 @@ extension EmojiArtViewController: UICollectionViewDropDelegate {
 extension EmojiArt.EmojiInfo {
     
     init?(label: UILabel) {
-        if let attributedText = label.attributedText, let font = attributedText.font {
+        // TODO: - Changed 'font = attributedText' to 'font = label.font'. Seemed like a bug in iOS 11.3, previous solution used in the course returned nil
+        if let attributedText = label.attributedText, let font = label.font {
             x = Int(label.center.x)
             y = Int(label.center.y)
             text = attributedText.string
