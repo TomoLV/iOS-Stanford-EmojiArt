@@ -170,7 +170,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="769.921875" y="842.96875"/>
+            <point key="canvasLocation" x="833" y="843"/>
+        </scene>
+        <!--Document Browser View Controller-->
+        <scene sceneID="Upp-vr-3NI">
+            <objects>
+                <viewController id="XaK-KG-kA4" customClass="DocumentBrowserViewController" customModule="EmojiArt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KQS-Lh-fHs">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="WSW-Rz-XDJ"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uYB-wR-0fj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-879" y="843"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="eeS-5w-Z7b">
@@ -188,7 +203,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1dZ-Ih-nxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-646" y="842"/>
+            <point key="canvasLocation" x="-7" y="843"/>
         </scene>
     </scenes>
 </document>
