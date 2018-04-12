@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -155,18 +154,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="tH6-dH-wtz">
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="save" id="hPu-MM-3BG">
-                                <connections>
-                                    <action selector="save:" destination="BYZ-38-t0r" id="YvU-wG-loF"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem systemItem="done" id="8qx-fZ-TgG">
-                                <connections>
-                                    <action selector="close:" destination="BYZ-38-t0r" id="K85-8N-Ucw"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="8qx-fZ-TgG">
+                            <connections>
+                                <action selector="close:" destination="BYZ-38-t0r" id="K85-8N-Ucw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hPu-MM-3BG">
+                            <connections>
+                                <action selector="save:" destination="BYZ-38-t0r" id="YvU-wG-loF"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dropZone" destination="CTJ-aJ-CvJ" id="tPU-mM-M57"/>
