@@ -24,7 +24,7 @@ class DocumentBrowserViewController: UIDocumentBrowserViewController, UIDocument
         
         // Only allow create new document on iPad
         if UIDevice.current.userInterfaceIdiom == .pad {
-            template = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("Untitled.json")
+            template = try? FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("Untitled.emojiart")
             if template != nil {
                 allowsDocumentCreation = FileManager.default.createFile(atPath: template!.path, contents: Data())
             }

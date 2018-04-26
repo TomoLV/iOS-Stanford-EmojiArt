@@ -159,11 +159,6 @@
                                 <action selector="close:" destination="BYZ-38-t0r" id="K85-8N-Ucw"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="hPu-MM-3BG">
-                            <connections>
-                                <action selector="save:" destination="BYZ-38-t0r" id="YvU-wG-loF"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dropZone" destination="CTJ-aJ-CvJ" id="tPU-mM-M57"/>
@@ -198,7 +193,7 @@
         <!--Document Browser View Controller-->
         <scene sceneID="ryH-5r-pbY">
             <objects>
-                <viewController id="coN-Te-HyT" customClass="DocumentBrowserViewController" customModule="TMP" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="coN-Te-HyT" customClass="DocumentBrowserViewController" customModule="EmojiArt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2HT-47-9ag">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

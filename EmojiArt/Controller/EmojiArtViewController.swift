@@ -8,7 +8,13 @@
 
 import UIKit
 
-class EmojiArtViewController: UIViewController {
+class EmojiArtViewController: UIViewController, EmojiArtViewDelegate {
+    
+    // MARK: - EmojiArtViewDelegate implementation
+    
+    func emojiArtViewDidChange(_ sender: EmojiArtView) {
+        documentChanged()
+    }
     
     // MARK: - Model
     var document: EmojiArtDocument?
@@ -16,14 +22,14 @@ class EmojiArtViewController: UIViewController {
         get {
             if let url = emojiArtBackgroundImage.url {
                 // use compactMap (EDIT: flatMap used in course is deprecated) to ignore nil values
-                let emojis = emojiArtView.subviews.compactMap { $0 as? UILabel }.compactMap { EmojiArt.EmojiInfo(label: $0) }
+                let emojis = emojiArtView.subviews.flatMap { $0 as? UILabel }.flatMap { EmojiArt.EmojiInfo(label: $0) }
                 return EmojiArt(url: url, emojis: emojis)
             }
             return nil
         } set {
             // clear ui before setting UI from new model
             emojiArtBackgroundImage = (nil, nil)
-            emojiArtView.subviews.compactMap { $0 as? UILabel }.forEach { $0.removeFromSuperview() }
+            emojiArtView.subviews.flatMap { $0 as? UILabel }.forEach { $0.removeFromSuperview() }
             // fetch new elements for UI
             if let url = newValue?.url {
                 imageFetcher = ImageFetcher(fetch: url) { (url, image) in
@@ -71,14 +77,33 @@ class EmojiArtViewController: UIViewController {
         addingEmoji = true
         emojiCollectionView.reloadSections(IndexSet(integer: 0))
     }
-    @IBAction func save(_ sender: UIBarButtonItem? = nil) {
+    
+    // MODIFIED AFTER LECTURE 14
+    // we no longer need a save method or button
+    // because now we are the EmojiArtView's delegate
+    // (search for "delegate = self" below)
+    // and we get notified when the EmojiArtView changes
+    // (we also note when a new image is dropped, search "documentChanged" below)
+    // and so we can just update our UIDocument's Model to match ours
+    // and tell our UIDocument that it has changed
+    // and it will autosave at the next opportune moment
+    func documentChanged() {
         document?.emojiArt = emojiArt
         if document?.emojiArt != nil {
             document?.updateChangeCount(.done)
         }
     }
     @IBAction func close(_ sender: UIBarButtonItem) {
-        save()
+        // MODIFIED AFTER LECTURE 14
+        // the call to save() that used to be here has been removed
+        // because we no longer explicitly save our document
+        // we just mark that it has been changed
+        // and since we are reliably doing that now
+        // we don't need to try to save it when we close it
+        // UIDocument will automatically autosave when we close()
+        // if it has any unsaved changes
+        // the rest of this method is unchanged from lecture 14
+        
         if document?.emojiArt != nil {
             document?.thumbnail = emojiArtView.snapshot
         }
@@ -89,7 +114,11 @@ class EmojiArtViewController: UIViewController {
     
     // MARK: - Instance properties
     var imageFetcher: ImageFetcher!
-    var emojiArtView = EmojiArtView()
+    lazy var emojiArtView: EmojiArtView = {
+        let view = EmojiArtView()
+        view.delegate = self
+        return view
+    }()
     // Next 2 lines: Use tuple (url, image) to keep url and image together, use _ to indicate that this var is set somewhere else
     private var _emojiArtBackgroundImageURL: URL?
     var emojiArtBackgroundImage: (url: URL?, image: UIImage?) {
@@ -145,6 +174,7 @@ extension EmojiArtViewController: UIDropInteractionDelegate {
         imageFetcher = ImageFetcher() { (url, image) in
             DispatchQueue.main.async {
                 self.emojiArtBackgroundImage = (url, image)
+                self.documentChanged()
             }
         }
         
@@ -333,7 +363,7 @@ extension EmojiArt.EmojiInfo {
     
     init?(label: UILabel) {
         // TODO: - Changed 'font = attributedText' to 'font = label.font'. Seemed like a bug in iOS 11.3, previous solution used in the course returned nil
-        if let attributedText = label.attributedText, let font = label.font {
+        if let attributedText = label.attributedText, let font = attributedText.font {
             x = Int(label.center.x)
             y = Int(label.center.y)
             text = attributedText.string
